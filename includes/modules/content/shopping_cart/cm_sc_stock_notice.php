@@ -36,12 +36,11 @@
 
       $content_width = (int)MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH;
 
-      if ($cart->count_contents() > 0 && $any_out_of_stock == 1) {
- 
+      if ($cart->count_contents() > 0 && $any_out_of_stock == 1) { 
         if (STOCK_ALLOW_CHECKOUT == 'true') {
-          $sc_stock_notice = '<div class="alert alert-warning">' . OUT_OF_STOCK_CAN_CHECKOUT . '</div>';
+          $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT;
         } else {
-          $sc_stock_notice = '<div class="alert alert-danger">' . OUT_OF_STOCK_CANT_CHECKOUT . '</div>';
+          $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT;
         }
  
         ob_start();
@@ -52,7 +51,7 @@
       }
     }
 
-    function  isEnabled() {
+    function isEnabled() {
       return $this->enabled;
     }
 
@@ -74,4 +73,4 @@
       return array('MODULE_CONTENT_SC_STOCK_NOTICE_STATUS', 'MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH', 'MODULE_CONTENT_SC_STOCK_NOTICE_SORT_ORDER');
     }
   }
-
+  
