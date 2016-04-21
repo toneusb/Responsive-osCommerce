@@ -11,8 +11,6 @@
 */
 ?>
 
-<div class="col-sm-<?php echo $content_width ?>">
-	<?php echo tep_draw_form('cart_quantity', tep_href_link(FILENAME_SHOPPING_CART, 'action=update_product')); ?>
-      	<?php echo $products_name; ?>
-	</form>
-</div>	
+<div class="col-sm-<?php echo $content_width ?> cm-sc-product-listing">
+  <?php echo $products_name; ?>
+</div>
