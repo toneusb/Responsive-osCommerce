@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2010 osCommerce
+  Copyright (c) 2016 osCommerce
 
   Released under the GNU General Public License
 */
@@ -29,9 +29,9 @@
   }
 ?>
 
-  	<div class="row">
-    	<?php echo $oscTemplate->getContent('shopping_cart'); ?>
-    </div>
+<div class="row">
+  <?php echo $oscTemplate->getContent('shopping_cart'); ?>
+</div>
 
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');
