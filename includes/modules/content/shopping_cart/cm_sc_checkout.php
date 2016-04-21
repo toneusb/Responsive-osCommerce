@@ -32,25 +32,20 @@
     }
 
     function execute() {
-      global $oscTemplate, $payment_modules, $any_out_of_stock, $cart;
+      global $oscTemplate, $cart;
 
       $content_width = (int)MODULE_CONTENT_SC_CHECKOUT_CONTENT_WIDTH;
 	  
 	    if ($cart->count_contents() > 0) {
-	    	
-	    	$sc_checkout = '<div class="buttonSet">' . 
-      									  tep_draw_button(IMAGE_BUTTON_CHECKOUT, 'fa fa-angle-right', tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'), 'primary', NULL, 'btn-success') . 
-      								 '</div>';
-		  
       	ob_start();
       	include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/checkout.php');
       	$template = ob_get_clean();
 
       	$oscTemplate->addContent($template, $this->group);
-      } // end if $cart->count_contents() > 0
+      }
     }
 
-    function  isEnabled() {
+    function isEnabled() {
       return $this->enabled;
     }
 
@@ -72,4 +67,4 @@
       return array('MODULE_CONTENT_SC_CHECKOUT_STATUS', 'MODULE_CONTENT_SC_CHECKOUT_CONTENT_WIDTH', 'MODULE_CONTENT_SC_CHECKOUT_SORT_ORDER');
     }
   }
-?>
+  

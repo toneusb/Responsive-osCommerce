@@ -184,7 +184,6 @@ define('IMAGE_BUTTON_ADDRESS_BOOK', 'Address Book');
 define('IMAGE_BUTTON_BACK', 'Back');
 define('IMAGE_BUTTON_BUY_NOW', 'Buy Now');
 define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Change Address');
-define('IMAGE_BUTTON_CHECKOUT', 'Checkout');
 define('IMAGE_BUTTON_CONFIRM_ORDER', 'Confirm Order');
 define('IMAGE_BUTTON_CONTINUE', 'Continue');
 define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Continue Shopping');
