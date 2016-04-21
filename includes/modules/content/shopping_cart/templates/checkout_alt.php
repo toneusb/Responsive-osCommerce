@@ -12,5 +12,8 @@
 ?>
 
 <div class="col-sm-<?php echo $content_width ?> text-right">
-	<?php echo $sc_alt_checkout; ?>
+  <p><?php echo MODULE_CONTENT_SC_CHECKOUT_ALT_TEXT_ALTERNATIVE_CHECKOUT_METHODS; ?></p>
+  <div class="buttonSet">
+    <?php echo $sc_alt_checkout; ?>
+  </div>
 </div>
