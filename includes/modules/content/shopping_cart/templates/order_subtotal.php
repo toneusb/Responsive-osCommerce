@@ -11,6 +11,6 @@
 */
 ?>
 
-<div class="col-sm-<?php echo $content_width ?>">
-	 <?php echo $sc_order_subtotal; ?>
+<div class="col-sm-<?php echo $content_width ?> cm-sc-order-subtotal">
+	<p class="text-right"><strong><?php echo sprintf(MODULE_CONTENT_SC_ORDER_SUBTOTAL_SUB_TITLE_SUB_TOTAL, $order_subtotal); ?></strong></p>  
 </div>  

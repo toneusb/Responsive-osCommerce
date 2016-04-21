@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2014 osCommerce
+  Copyright (c) 2016 osCommerce
 
   Released under the GNU General Public License
 */
@@ -33,19 +33,18 @@
 
     function execute() {
       global $oscTemplate, $cart, $currencies;
-	  
-	  $content_width = (int)MODULE_CONTENT_SC_ORDER_SUBTOTAL_CONTENT_WIDTH;
-	  
-	  if ($cart->count_contents() > 0) {
+      
+      $content_width = (int)MODULE_CONTENT_SC_ORDER_SUBTOTAL_CONTENT_WIDTH;
+      
+      if ($cart->count_contents() > 0) {		
+        $order_subtotal = $currencies->format($cart->show_total());
+        
+        ob_start();
+        include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/order_subtotal.php');
+        $template = ob_get_clean();
 
-      $sc_order_subtotal = '<p class="text-right"><strong>' . SUB_TITLE_SUB_TOTAL . ' ' . $currencies->format($cart->show_total()) . '</strong></p>';	  
-		  
-      ob_start();
-      include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/order_subtotal.php');
-      $template = ob_get_clean();
-
-      $oscTemplate->addContent($template, $this->group);
-	  } // end if $cart->count_contents() > 0
+        $oscTemplate->addContent($template, $this->group);
+      }
     }
 
     function  isEnabled() {
@@ -70,4 +69,4 @@
       return array('MODULE_CONTENT_SC_ORDER_SUBTOTAL_STATUS', 'MODULE_CONTENT_SC_ORDER_SUBTOTAL_CONTENT_WIDTH', 'MODULE_CONTENT_SC_ORDER_SUBTOTAL_SORT_ORDER');
     }
   }
-?>
+  
