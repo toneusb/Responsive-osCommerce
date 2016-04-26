@@ -12,5 +12,7 @@
 ?>
 
 <div class="col-sm-<?php echo $content_width ?> sc-stock-notice">
-  <?php echo $sc_stock_notice; ?>
+  <div class="alert alert-<?php echo $sc_css ?>">
+    <?php echo $sc_stock_notice; ?>
+  </div>
 </div>

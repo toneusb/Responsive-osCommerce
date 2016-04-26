@@ -39,8 +39,10 @@
       if ($cart->count_contents() > 0 && $any_out_of_stock == 1) { 
         if (STOCK_ALLOW_CHECKOUT == 'true') {
           $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT;
+          $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT_CSS);
         } else {
           $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT;
+          $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT_CSS);
         }
  
         ob_start();
@@ -62,7 +64,9 @@
     function install() {
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Shopping Cart Stock Notice', 'MODULE_CONTENT_SC_STOCK_NOTICE_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");	
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Width', 'MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH', '12', 'What width container should the content be shown in?', '6', '2', 'tep_cfg_select_option(array(\'12\', \'11\', \'10\', \'9\', \'8\', \'7\', \'6\', \'5\', \'4\', \'3\', \'2\', \'1\'), ', now())");
-      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_CONTENT_SC_STOCK_NOTICE_SORT_ORDER', '500', 'Sort order of display. Lowest is displayed first.', '6', '3', now())");
+      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Can Checkout Message Colour', 'MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT_CSS', 'Warning', 'What colour Alert should the Can Checkout message be assigned?', '6', '3', 'tep_cfg_select_option(array(\'Success\', \'Info\', \'Warning\', \'Danger\'), ', now())");
+      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Cant Checkout Message Colour', 'MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT_CSS', 'Danger', 'What colour Alert should the Cant Checkout message be assigned?', '6', '4', 'tep_cfg_select_option(array(\'Success\', \'Info\', \'Warning\', \'Danger\'), ', now())");
+      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_CONTENT_SC_STOCK_NOTICE_SORT_ORDER', '500', 'Sort order of display. Lowest is displayed first.', '6', '5', now())");
     }
 
     function remove() {
@@ -70,7 +74,6 @@
     }
 
     function keys() {
-      return array('MODULE_CONTENT_SC_STOCK_NOTICE_STATUS', 'MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH', 'MODULE_CONTENT_SC_STOCK_NOTICE_SORT_ORDER');
+      return array('MODULE_CONTENT_SC_STOCK_NOTICE_STATUS', 'MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH', 'MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT_CSS', 'MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT_CSS', 'MODULE_CONTENT_SC_STOCK_NOTICE_SORT_ORDER');
     }
   }
-  
