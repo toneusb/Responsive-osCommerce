@@ -32,24 +32,34 @@
     }
 
     function execute() {
-      global $oscTemplate, $cart, $any_out_of_stock;
+      global $oscTemplate, $cart, $products
 
       $content_width = (int)MODULE_CONTENT_SC_STOCK_NOTICE_CONTENT_WIDTH;
 
-      if ($cart->count_contents() > 0 && $any_out_of_stock == 1) { 
-        if (STOCK_ALLOW_CHECKOUT == 'true') {
-          $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT;
-          $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT_CSS);
-        } else {
-          $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT;
-          $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT_CSS);
-        }
- 
-        ob_start();
-        include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/stock_notice.php');
-        $template = ob_get_clean();
+      if ($cart->count_contents() > 0) {
+        $products = $cart->get_products();
+        if (STOCK_CHECK == 'true') {
+          for ($i=0, $n=sizeof($products); $i<$n; $i++) {
+            $stock_check = tep_check_stock($products[$i]['id'], $products[$i]['quantity']);
+            if (tep_not_null($stock_check)) {
+              if (STOCK_ALLOW_CHECKOUT == 'true') {
+                $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT;
+                $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CAN_CHECKOUT_CSS);
+              } else {
+                $sc_stock_notice = MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT;
+                $sc_css          = strtolower(MODULE_CONTENT_SC_STOCK_NOTICE_OUT_OF_STOCK_CANT_CHECKOUT_CSS);
+              }
+              
+              ob_start();
+              include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/stock_notice.php');
+              $template = ob_get_clean();
 
-        $oscTemplate->addContent($template, $this->group);
+              $oscTemplate->addContent($template, $this->group);
+        
+              break;
+            }
+          }  
+        }
       }
     }
 
